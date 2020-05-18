@@ -10,6 +10,20 @@ class dbUser:
       connect_timeout=1000
       )
       self.mycursor = self.mydb.cursor()
+  
+  mysql.connector.connect(
+      host='sql210.main-hosting.eu',
+      user='u835930476_revendoo', 
+      passwd='123456', 
+      database='u835930476_revendoo',
+      pool_name='batman',
+      pool_size = 3
+  )
+
+  def connection():
+    """Get a connection and a cursor from the pool"""
+    db = mysql.connector.connect(pool_name = 'batman')
+    return (db, db.cursor())
 
   def getUsuarios(self):
     sql = "SELECT * FROM usuario"
@@ -71,7 +85,10 @@ class dbUser:
     sql = "SELECT * FROM usuario WHERE email='"+str(email)+"' and senha='"+str(senha)+"';"
     val = (email,senha)
     print(sql)
+    connection()
     self.mycursor.execute(sql)
     myresult = self.mycursor.fetchall()
     print(myresult)
+    connection().close()
+    self.mycursor.close()
     return myresult
