@@ -21,6 +21,7 @@ def login():
         if senha != None and login !=None:
             try:
                 res = p.loginUsuario(login,senha)
+                time.sleep(1)
                 usuario = res[0]
                 if res != []:
                     return jsonify(
