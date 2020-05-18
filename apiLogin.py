@@ -18,10 +18,9 @@ def login():
         print('dados', dados)
         login = dados.get('email')
         senha = dados.get('senha')
-        print(login['email'],senha['senha'])
         if senha != None and login !=None:
             try:
-                res = p.loginUsuario(login['email'],senha['senha'])
+                res = p.loginUsuario(login,senha)
                 usuario = res[0]
                 if res != []:
                     return jsonify(
