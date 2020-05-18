@@ -7,6 +7,10 @@ p = dbUser('sql210.main-hosting.eu','u835930476_revendoo','123456','u835930476_r
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/", methods=["GET"])
+def home():
+    print('Seja bem vindo ao revendooAPI')
+
 @app.route("/login", methods=["POST"])
 def login():
     if request.method == 'POST':
