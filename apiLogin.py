@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dbUsuario import dbUser
 import time
-p = dbUser('localhost','root','123456','revendoo')
+p = dbUser('sql210.main-hosting.eu','u835930476_revendoo','123456','u835930476_revendoo')
 #import requests
 app = Flask(__name__)
 CORS(app)
@@ -30,7 +30,7 @@ def login():
             except Exception as e:
                 return jsonify({'id':'Login Invalido'})
         else:
-            return jsonify({'erro':'Parametros inválidos'})
+            return jsonify({'erro':'Parametros invalidos'})
     else:
         return jsonify({'aguardando':'Parametros'})
 
@@ -53,7 +53,7 @@ def cadastroUsuario():
             iD = res[0]
             return jsonify({'mensagem':'Cadastro feito com sucesso','id':str(iD[0])})
         else:
-            return jsonify({'mensagem':'Email já em uso'})
+            return jsonify({'mensagem':'Email ja em uso'})
     except Exception as e:
         print(e)
         return jsonify({'erro':e})
