@@ -22,7 +22,6 @@ def login():
             try:
                 res = p.loginUsuario(login,senha)
                 usuario = res[0]
-                print(res)
                 if res != []:
                     return jsonify(
                     {
@@ -32,7 +31,7 @@ def login():
                 else:
                     return jsonify({'id':'Login Invalido'})
             except Exception as e:
-                return jsonify({'id':'Login Invalido'})
+                return jsonify({'id':e})
         else:
             return jsonify({'erro':'Parametros invalidos'})
     else:
