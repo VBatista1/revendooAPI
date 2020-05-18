@@ -9,6 +9,7 @@ class dbUser:
       database=database
       )
       self.mycursor = self.mydb.cursor()
+      self.mycursor.execute("SET max_allowed_packet=1073741824")
 
   def getUsuarios(self):
     sql = "SELECT * FROM usuario"
