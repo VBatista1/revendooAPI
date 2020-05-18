@@ -6,10 +6,10 @@ class dbUser:
       host=host,
       user=user,
       passwd=passwd,
-      database=database
+      database=database,
+      connect_timeout=1000
       )
       self.mycursor = self.mydb.cursor()
-      self.mycursor.execute("SET GLOBAL max_allowed_packet=1073741824")
 
   def getUsuarios(self):
     sql = "SELECT * FROM usuario"
