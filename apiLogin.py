@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dbUsuario import dbUser
 import time
-p = dbUser('sql210.main-hosting.eu','u835930476_revendoo','123456','u835930476_revendoo')
+p = dbUser('us-cdbr-east-06.cleardb.net','b13febca5980fe','9c4ead86','heroku_a23d77c529f2361')
 #import requests
 app = Flask(__name__)
 CORS(app)
