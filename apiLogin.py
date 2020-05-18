@@ -9,7 +9,7 @@ CORS(app)
 
 @app.route("/", methods=["GET"])
 def home():
-    return 'Seja bem vindo ao revendooAPI'
+    return 'Seja bem vindo ao revendooAP'
 
 @app.route("/login", methods=["POST"])
 def login():
