@@ -89,6 +89,4 @@ class dbUser:
     self.mycursor.execute(sql)
     myresult = self.mycursor.fetchall()
     print(myresult)
-    connection().close()
-    self.mycursor.close()
     return myresult
