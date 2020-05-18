@@ -31,7 +31,7 @@ def login():
                 else:
                     return jsonify({'id':'Login Invalido'})
             except Exception as e:
-                return e
+                return str(e)
         else:
             return jsonify({'erro':'Parametros invalidos'})
     else:
