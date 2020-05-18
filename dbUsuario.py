@@ -1,6 +1,5 @@
 import mysql.connector
 import time
-import pyodbc
 class dbUser:
   def __init__(self,host,user,passwd,database):
       self.mydb = mysql.connector.connect(
