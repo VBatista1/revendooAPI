@@ -85,7 +85,7 @@ class dbUser:
     sql = "SELECT * FROM usuario WHERE email='"+str(email)+"' and senha='"+str(senha)+"';"
     val = (email,senha)
     print(sql)
-    connection()
+    self.connection()
     self.mycursor.execute(sql)
     myresult = self.mycursor.fetchall()
     print(myresult)
