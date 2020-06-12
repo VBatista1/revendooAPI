@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app
-from .models import Clientes
-from .serealizer import cliente_schema
+from models import Clientes
+from serealizer import cliente_schema
 bp_cliente = Blueprint('cliente', __name__)
 
 
@@ -16,12 +16,12 @@ def createCliente(idUser):
         current_app.db.session.commit()
         return jsonify({ 'message': 'Cliente Inserido com sucesso' }), 200
 
-    return jsonify({ 'message': 'Cliente já cadastrado' }), 401
+    return jsonify({ 'message': 'Cliente ja cadastrado' }), 401
 
 @bp_cliente.route('/clientes/<idUser>', methods=['GET'])
 def selectCliente_byUser(idUser):
     result = Clientes.query.filter(Clientes.user_id==idUser)
-    return cliente_schema.dumps(result), 200
+    return jsonify(cliente_schema.dumps(result))
 
 
 @bp_cliente.route('/cliente', methods=['GET'])
@@ -29,4 +29,4 @@ def readClientes_by_userID_id():
     idUser = request.args.get('idUser')
     clienteID = request.args.get('idCliente')
     result = Clientes.query.filter(Clientes.user_id == idUser, Clientes.id == int(clienteID))
-    return cliente_schema.dumps(result), 200
+    return jsonify(cliente_schema.dumps(result))

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app
-from .models import Produto,Clientes,User,Vendas
-from .serealizer import ProdutoSchema,produto_schema
+from models import Produto,Clientes,User,Vendas
+from serealizer import ProdutoSchema,produto_schema
 bp_venda = Blueprint('venda', __name__)
 
 @bp_venda.route('/venda', methods=['POST'])

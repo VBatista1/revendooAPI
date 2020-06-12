@@ -1,6 +1,6 @@
 from marshmallow import fields, validates, ValidationError
 from flask_marshmallow import Marshmallow
-from .models import User,Produto
+from models import User,Produto
 from marshmallow_sqlalchemy import ModelSchema
 ma = Marshmallow()
 

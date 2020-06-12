@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app
-from .serealizer import UserSchema
-from .models import User
+from serealizer import UserSchema
+from models import User
 
 bp_user = Blueprint('user', __name__)
 
@@ -20,4 +20,4 @@ def register():
         current_app.db.session.commit()
         return jsonify({ 'message': 'Usuario Inserido com sucesso' }), 200
 
-    return jsonify({ 'message': 'Email já cadastrado' }), 401
+    return jsonify({ 'message': 'Email ja cadastrado' }), 401

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app
-from .models import Produto
-from .serealizer import ProdutoSchema,produto_schema
+from models import Produto
+from serealizer import ProdutoSchema,produto_schema
 bp_produto = Blueprint('produto', __name__)
 
 
@@ -22,21 +22,21 @@ def createProduto(idUser):
         current_app.db.session.commit()
         return jsonify({ 'message': 'Produto Inserido com sucesso' }), '200'
 
-    return jsonify({ 'message': 'Produto já cadastrado' }), '401'
+    return jsonify({ 'message': 'Produto ja cadastrado' }), '401'
 
 @bp_produto.route('/produtos', methods=['GET'])
 def readProdutos():
     result = Produto.query.all()
-    return produto_schema.dumps(result), 200
+    return jsonify(produto_schema.dumps(result))
 
-@bp_produto.route('/produtos/<userID>', methods=['GET'])
+@bp_produto.route('/produtos/<idUser>', methods=['GET'])
 def readProdutos_by_userID(idUser):
     result = Produto.query.filter(Produto.user_id == idUser)
-    return produto_schema.dumps(result), 200
+    return jsonify(produto_schema.dumps(result))
 
 @bp_produto.route('/produto', methods=['GET'])
 def readProdutos_by_userID_id():
     idUser = request.args.get('idUser')
     produtoID = request.args.get('idProduto')
     result = Produto.query.filter(Produto.user_id == idUser, Produto.id == int(produtoID))
-    return produto_schema.dumps(result), 200
+    return jsonify(produto_schema.dumps(result))

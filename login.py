@@ -2,8 +2,8 @@
 from datetime import timedelta
 from flask import Blueprint, request, jsonify, current_app
 #from flask_jwt_extended import create_access_token, create_refresh_token
-from .models import User
-from .serealizer import UserSchema,user_schema
+from models import User
+from serealizer import UserSchema,user_schema
 
 bp_login = Blueprint('login', __name__)
 @bp_login.route('/login', methods=['POST'])
@@ -21,7 +21,7 @@ def login():
 
         if user!=None:
             result = user_schema.dump(user)
-            return result, 200
+            return jsonify(result)
 
         return jsonify({
                 'message': 'Credenciais invalidas'
