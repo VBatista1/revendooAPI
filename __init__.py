@@ -10,6 +10,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://b13febca5980fe:9c4ead86@us-cdbr-east-06.cleardb.net/heroku_a23d77c529f2361"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DEBUG'] = True
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 299
+app.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
 CORS(app)
 config_db(app)
 config_ma(app)
