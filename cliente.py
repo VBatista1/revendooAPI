@@ -14,9 +14,9 @@ def createCliente(idUser):
         c = Clientes(name=name,user_id=idUser,telefone=telefone)
         current_app.db.session.add(c)
         current_app.db.session.commit()
-        return jsonify({ 'message': 'Cliente Inserido com sucesso' }), 200
+        return jsonify({ 'message': 'Cliente Inserido com sucesso' })
 
-    return jsonify({ 'message': 'Cliente ja cadastrado' }), 401
+    return jsonify({ 'message': 'Cliente ja cadastrado' })
 
 @bp_cliente.route('/clientes/<idUser>', methods=['GET'])
 def selectCliente_byUser(idUser):
