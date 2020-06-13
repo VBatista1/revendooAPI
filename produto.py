@@ -20,9 +20,21 @@ def createProduto(idUser):
         p = Produto(name=name,marca=marca,descricao=descricao,venda=float(venda),custo=float(custo),estoque=int(estoque),validade=validade,user_id=idUser)
         current_app.db.session.add(p)
         current_app.db.session.commit()
-        return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+        resp = make_response("OK")
+        resp.status_code = 201
+        resp.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+        resp.headers['Access-Control-Allow-Methods'] = '*'
+        resp.headers['Access-Control-Allow-Domain'] = '*'
+        resp.headers['Access-Control-Allow-Credentials'] = True
+        return resp
 
-    return json.dumps({'success':False}), 404, {'ContentType':'application/json'}
+    resp = make_response("Not Ok")
+    resp.status_code = 403
+    resp.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+    resp.headers['Access-Control-Allow-Methods'] = '*'
+    resp.headers['Access-Control-Allow-Domain'] = '*'
+    resp.headers['Access-Control-Allow-Credentials'] = True
+    return resp
 
 @bp_produto.route('/produtos', methods=['GET'])
 def readProdutos():
