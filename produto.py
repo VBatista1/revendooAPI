@@ -22,7 +22,7 @@ def createProduto(idUser):
         current_app.db.session.commit()
         resp = make_response("OK")
         resp.status_code = 201
-        resp.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+        resp.headers['Access-Control-Allow-Origin'] = '*'
         resp.headers['Access-Control-Allow-Methods'] = '*'
         resp.headers['Access-Control-Allow-Domain'] = '*'
         resp.headers['Access-Control-Allow-Credentials'] = True
@@ -30,7 +30,7 @@ def createProduto(idUser):
 
     resp = make_response("Not Ok")
     resp.status_code = 403
-    resp.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+    resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Methods'] = '*'
     resp.headers['Access-Control-Allow-Domain'] = '*'
     resp.headers['Access-Control-Allow-Credentials'] = True
