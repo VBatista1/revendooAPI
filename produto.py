@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify, current_app, make_response
 from models import Produto
 from serealizer import ProdutoSchema,produto_schema
 bp_produto = Blueprint('produto', __name__)
