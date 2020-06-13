@@ -20,9 +20,9 @@ def createProduto(idUser):
         p = Produto(name=name,marca=marca,descricao=descricao,venda=float(venda),custo=float(custo),estoque=int(estoque),validade=validade,user_id=idUser)
         current_app.db.session.add(p)
         current_app.db.session.commit()
-        return jsonify({ 'message': 'Produto Inserido com sucesso' })
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
-    return jsonify({ 'message': 'Produto ja cadastrado' })
+    return json.dumps({'success':False}), 404, {'ContentType':'application/json'}
 
 @bp_produto.route('/produtos', methods=['GET'])
 def readProdutos():
