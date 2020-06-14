@@ -1,4 +1,5 @@
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify, current_app, make_response
+from models import Produto
 from models import Produto,Clientes,User,Vendas
 from serealizer import ProdutoSchema,produto_schema
 bp_venda = Blueprint('venda', __name__)
@@ -30,7 +31,19 @@ def fazerVenda():
     
         current_app.db.session.commit()
 
-        return jsonify({ 'message': 'Venda feita com sucesso' })
+        resp = make_response("OK")
+        resp.status_code = 201
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = '*'
+        resp.headers['Access-Control-Allow-Domain'] = '*'
+        resp.headers['Access-Control-Allow-Credentials'] = True
+        return resp
 
     else:
-        return jsonify({ 'message': 'Sem produtos suficientes em estoque' })
+        resp = make_response("Not Ok")
+        resp.status_code = 403
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = '*'
+        resp.headers['Access-Control-Allow-Domain'] = '*'
+        resp.headers['Access-Control-Allow-Credentials'] = True
+        return resp
