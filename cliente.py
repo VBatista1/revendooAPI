@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify, current_app, make_response
 from models import Clientes
 from serealizer import cliente_schema
 bp_cliente = Blueprint('cliente', __name__)
@@ -14,9 +14,21 @@ def createCliente(idUser):
         c = Clientes(name=name,user_id=idUser,telefone=telefone)
         current_app.db.session.add(c)
         current_app.db.session.commit()
-        return jsonify({ 'message': 'Cliente Inserido com sucesso' })
+        resp = make_response("OK")
+        resp.status_code = 201
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = '*'
+        resp.headers['Access-Control-Allow-Domain'] = '*'
+        resp.headers['Access-Control-Allow-Credentials'] = True
+        return resp
 
-    return jsonify({ 'message': 'Cliente ja cadastrado' })
+    resp = make_response("Not Ok")
+    resp.status_code = 403
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = '*'
+    resp.headers['Access-Control-Allow-Domain'] = '*'
+    resp.headers['Access-Control-Allow-Credentials'] = True
+    return resp
 
 @bp_cliente.route('/clientes/<idUser>', methods=['GET'])
 def selectCliente_byUser(idUser):
