@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify, current_app, make_response
 from serealizer import UserSchema
 from models import User
 
@@ -18,6 +18,18 @@ def register():
         u = User(name,email,senha, telefone)
         current_app.db.session.add(u)
         current_app.db.session.commit()
-        return jsonify({ 'message': 'Usuario Inserido com sucesso' }), 200
+        resp = make_response("OK")
+        resp.status_code = 201
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = '*'
+        resp.headers['Access-Control-Allow-Domain'] = '*'
+        resp.headers['Access-Control-Allow-Credentials'] = True
+        return resp
 
-    return jsonify({ 'message': 'Email ja cadastrado' }), 401
+    resp = make_response("Not Ok")
+    resp.status_code = 403
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = '*'
+    resp.headers['Access-Control-Allow-Domain'] = '*'
+    resp.headers['Access-Control-Allow-Credentials'] = True
+    return resp
