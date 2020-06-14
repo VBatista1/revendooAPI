@@ -21,11 +21,20 @@ def login():
 
         if user!=None:
             result = user_schema.dump(user)
-            return jsonify(result)
-
-        return jsonify({
-                'message': 'Credenciais invalidas'
-        }), 401
+            resp = make_response("OK")
+            resp.status_code = 201
+            resp.headers['Access-Control-Allow-Origin'] = '*'
+            resp.headers['Access-Control-Allow-Methods'] = '*'
+            resp.headers['Access-Control-Allow-Domain'] = '*'
+            resp.headers['Access-Control-Allow-Credentials'] = True
+            return resp
+        resp = make_response("Not Ok")
+        resp.status_code = 403
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = '*'
+        resp.headers['Access-Control-Allow-Domain'] = '*'
+        resp.headers['Access-Control-Allow-Credentials'] = True
+        return resp
     except Exception as e:
         print(str(e))
         return jsonify(str(e)), 400
